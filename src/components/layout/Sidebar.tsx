@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   FileSpreadsheet, 
   Users, 
@@ -22,6 +22,13 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => 
   const [isCollapsed, setIsCollapsed] = useState(false);
   const logs = usePunchStore((state) => state.logs);
   const clearLogs = usePunchStore((state) => state.clearLogs);
+  const logBoxRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (logBoxRef.current) {
+      logBoxRef.current.scrollTop = logBoxRef.current.scrollHeight;
+    }
+  }, [logs]);
 
   const menuItems = [
     { id: 'upload', label: '考勤資料匯入', icon: FileSpreadsheet },
@@ -102,7 +109,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => 
               清除
             </button>
           </div>
-          <div className="h-32 border border-slate-850 bg-slate-950/90 rounded-lg p-2 font-mono text-[10px] overflow-y-auto scrollbar-thin scrollbar-thumb-slate-800">
+          <div ref={logBoxRef} className="h-32 border border-slate-850 bg-slate-950/90 rounded-lg p-2 font-mono text-[10px] overflow-y-auto scrollbar-thin scrollbar-thumb-slate-800">
             {logs.map((log) => (
               <div 
                 key={log.id} 
