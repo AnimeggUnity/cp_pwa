@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { usePunchStore } from '../store/usePunchStore';
 import { 
   LineChart, 
@@ -34,10 +34,11 @@ export const SalaryReports: React.FC = () => {
   const threshold = '21:00:00';
   const weekdayNames = ['日', '一', '二', '三', '四', '五', '六'];
 
-  // Initialize selected date if empty
-  if (!selectedDate && availableDates.length > 0) {
-    setSelectedDate(availableDates[0]);
-  }
+  useEffect(() => {
+    if (availableDates.length > 0 && !selectedDate) {
+      setSelectedDate(availableDates[0]);
+    }
+  }, [availableDates]);
 
   const handleCloseReport = () => {
     setReportType('none');
@@ -47,7 +48,7 @@ export const SalaryReports: React.FC = () => {
   // ==========================================
   // Report A: Night Meal Allowance Calculations
   // ==========================================
-  const getNightMealList = () => {
+  const getNightMealList = (skipShiftFilter = false) => {
     const summaryMap = new Map<string, {
       emp_id: string;
       name: string;
@@ -93,7 +94,7 @@ export const SalaryReports: React.FC = () => {
     }
 
     // Filter by shift filter button
-    if (nightShiftFilter !== 'all') {
+    if (!skipShiftFilter && nightShiftFilter !== 'all') {
       result = result.filter(item => item.shift_class === nightShiftFilter);
     }
 
@@ -403,6 +404,7 @@ export const SalaryReports: React.FC = () => {
              ========================================== */}
           {reportType === 'night' && (() => {
             const data = getNightMealList();
+            const allData = getNightMealList(true);
             const totalAllowance = data.reduce((sum, item) => sum + item.count, 0);
             const nightShifts = getNightShifts();
 
@@ -442,8 +444,7 @@ export const SalaryReports: React.FC = () => {
                       全部 ({data.length}人)
                     </button>
                     {nightShifts.map(shift => {
-                      const list = getNightMealList(); // Evaluates total within active state
-                      const count = list.filter(item => item.shift_class === shift).length;
+                      const count = allData.filter(item => item.shift_class === shift).length;
                       return (
                         <button
                           key={shift}

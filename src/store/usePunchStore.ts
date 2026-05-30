@@ -450,7 +450,7 @@ export const usePunchStore = create<PunchState>((setStore, getStore) => ({
       
       // 1. LEFT JOIN
       const integratedList = rawPunchData.map(punch => {
-        const emp = employeeList.find(e => e.account_id === punch.account_id) || empMap.get(punch.emp_id) || ({} as Partial<Employee>);
+        const emp = employeeList.find(e => e.account_id === punch.account_id) || empMap.get(punch.account_id) || ({} as Partial<Employee>);
         
         return {
           ...punch,
