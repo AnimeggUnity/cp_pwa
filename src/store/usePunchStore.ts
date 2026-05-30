@@ -527,7 +527,7 @@ export const usePunchStore = create<PunchState>((setStore, getStore) => ({
   generateMachineAnomalyReport: () => {
     const { machineList, integratedPunchData, addLog } = getStore();
     if (machineList.length === 0 || integratedPunchData.length === 0) {
-      return { success: false, anomalyCount: 0, noShiftCount: 0 };
+      return { success: false, anomalyCount: 0, noShiftCount: 0, unknownCount: 0 };
     }
 
     addLog('執行機號異常比對...', 'info');
