@@ -229,7 +229,7 @@ export const usePunchStore = create<PunchState>((setStore, getStore) => ({
         else if (header.includes('卡') || header.includes('工號') || header.includes('id')) headerIndex.emp_id = index;
         else if (header.includes('名') || header.includes('name')) headerIndex.name = index;
         else if (header.includes('帳') || header.includes('公務') || header.includes('acc')) headerIndex.account_id = index;
-        else if (header.includes('司機') || header.includes('是否')) headerIndex.is_driver = index;
+        else if (header.includes('司機') || header.includes('是否') || header.includes('駕駛')) headerIndex.is_driver = index;
       });
 
       if (headerIndex.emp_id === -1 && headerIndex.name === -1) {
@@ -258,8 +258,18 @@ export const usePunchStore = create<PunchState>((setStore, getStore) => ({
         
         let is_driver = false;
         if (headerIndex.is_driver !== -1 && cols[headerIndex.is_driver]) {
-          const val = cols[headerIndex.is_driver];
-          if (val.includes('是') || val.toLowerCase().includes('y') || val.includes('1') || val.includes('司機')) {
+          const val = cols[headerIndex.is_driver].trim().toLowerCase();
+          if (
+            val.includes('是') || 
+            val.includes('y') || 
+            val.includes('t') || 
+            val.includes('true') || 
+            val.includes('1') || 
+            val.includes('司機') ||
+            val.includes('駕駛') ||
+            val.includes('v') ||
+            val.includes('✓')
+          ) {
             is_driver = true;
           }
         }

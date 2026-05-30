@@ -462,9 +462,9 @@ export const SalaryReports: React.FC = () => {
 
                 {/* Table */}
                 <div className="overflow-x-auto border border-slate-850 bg-slate-950/20 rounded-xl">
-                  <table className="w-full text-left border-collapse text-xs" id="rendered-report-table">
+                  <table className="w-full text-left border-collapse text-sm" id="rendered-report-table">
                     <thead>
-                      <tr className="bg-slate-900 border-b border-slate-800 text-slate-300 font-bold">
+                      <tr className="bg-slate-900 border-b border-slate-800 text-slate-300 font-bold text-center text-sm md:text-[15px]">
                         <th className="p-3 text-left">員工卡號</th>
                         <th className="p-3 text-left">姓名</th>
                         <th className="p-3 text-left">班別</th>
@@ -487,18 +487,18 @@ export const SalaryReports: React.FC = () => {
                               idx % 2 === 1 ? "bg-slate-900/40" : "bg-transparent"
                             )}
                           >
-                            <td className="p-3 font-mono">{row.emp_id}</td>
-                            <td className="p-3 font-semibold text-white">{row.name}</td>
-                            <td className="p-3">{row.shift_class}</td>
-                            <td className="p-3">
+                            <td className="p-3 font-mono text-[15px] font-bold text-white/90">{row.emp_id}</td>
+                            <td className="p-3 font-semibold text-[15px] text-white">{row.name}</td>
+                            <td className="p-3 text-[15px] text-slate-300">{row.shift_class}</td>
+                            <td className="p-3 text-[15px]">
                               {row.is_driver ? (
-                                <span className="px-1.5 py-0.5 bg-amber-500/10 border border-amber-500/20 text-amber-400 font-bold rounded-lg text-[10px]">司機</span>
+                                <span className="px-1.5 py-0.5 bg-amber-500/10 border border-amber-500/20 text-amber-400 font-bold rounded-lg text-xs">司機</span>
                               ) : (
                                 <span className="text-slate-500">一般員工</span>
                               )}
                             </td>
-                            <td className="p-3 text-center font-bold text-emerald-400">{row.count} 次</td>
-                            <td className="p-3 break-all font-mono text-[11px] text-slate-400">{row.dates.sort().join(', ')}</td>
+                            <td className="p-3 text-center font-bold text-[15px] text-emerald-400">{row.count} 次</td>
+                            <td className="p-3 break-all font-mono text-[15px] text-slate-300">{row.dates.sort().join(', ')}</td>
                           </tr>
                         ))
                       )}
@@ -575,9 +575,9 @@ export const SalaryReports: React.FC = () => {
                       const col2 = list.slice(mid);
 
                       const renderColTable = (items: IntegratedRecord[]) => (
-                        <table className="w-full text-left border-collapse text-[10px] border border-slate-800 print:text-black">
+                        <table className="w-full text-left border-collapse text-xs border border-slate-800 print:text-black">
                           <thead>
-                            <tr className="bg-slate-900 border-b border-slate-850 text-slate-300 font-bold print:bg-gray-200 print:text-black">
+                            <tr className="bg-slate-900 border-b border-slate-850 text-slate-300 font-bold print:bg-gray-200 print:text-black text-xs md:text-[13px]">
                               <th className="p-2 w-[40%]">姓名/卡號</th>
                               <th className="p-2 w-[15%] text-center">次數</th>
                               <th className="p-2 w-[45%]">打卡時間明細</th>
@@ -593,10 +593,10 @@ export const SalaryReports: React.FC = () => {
                                 )}
                               >
                                 <td className="p-2">
-                                  <div className="font-bold text-white print:text-black">{emp.name}</div>
-                                  <div className="text-[9px] text-slate-500 font-mono print:text-gray-600">{emp.emp_id} {emp.is_driver ? '[司機]' : ''}</div>
+                                  <div className="font-bold text-white text-xs print:text-black">{emp.name}</div>
+                                  <div className="text-[10px] text-slate-450 font-mono print:text-gray-600">{emp.emp_id} {emp.is_driver ? '[司機]' : ''}</div>
                                 </td>
-                                <td className="p-2 text-center font-bold">{emp.punch_times.length}</td>
+                                <td className="p-2 text-center font-bold text-xs">{emp.punch_times.length}</td>
                                 <td className="p-2">
                                   <div className="flex flex-wrap gap-1">
                                     {emp.punch_times.map((t, idx) => (
@@ -628,9 +628,9 @@ export const SalaryReports: React.FC = () => {
                 ) : (
                   // Regular Table Layout
                   <div className="overflow-x-auto border border-slate-850 bg-slate-950/20 rounded-xl">
-                    <table className="w-full text-left border-collapse text-xs" id="rendered-report-table">
+                    <table className="w-full text-left border-collapse text-sm" id="rendered-report-table">
                       <thead>
-                        <tr className="bg-slate-900 border-b border-slate-800 text-slate-300 font-bold">
+                        <tr className="bg-slate-900 border-b border-slate-800 text-slate-300 font-bold text-center text-sm md:text-[15px]">
                           <th className="p-3 text-left w-28">班別</th>
                           <th className="p-3 text-left">員工卡號</th>
                           <th className="p-3 text-left w-28">姓名</th>
@@ -653,17 +653,17 @@ export const SalaryReports: React.FC = () => {
                                 idx % 2 === 1 ? "bg-slate-900/40" : "bg-transparent"
                               )}
                             >
-                              <td className="p-3 font-semibold text-white truncate max-w-[7rem]">{row.shift_class}</td>
-                              <td className="p-3 font-mono">{row.emp_id}</td>
-                              <td className="p-3 font-semibold text-white truncate max-w-[7rem]">{row.name}</td>
-                              <td className="p-3">
+                              <td className="p-3 font-semibold text-[15px] text-white truncate max-w-[7rem]">{row.shift_class}</td>
+                              <td className="p-3 font-mono text-[15px] text-white/90">{row.emp_id}</td>
+                              <td className="p-3 font-semibold text-[15px] text-white truncate max-w-[7rem]">{row.name}</td>
+                              <td className="p-3 text-[15px]">
                                 {row.is_driver ? (
-                                  <span className="px-1.5 py-0.5 bg-amber-500/10 border border-amber-500/20 text-amber-400 font-bold rounded-lg text-[10px]">司機</span>
+                                  <span className="px-1.5 py-0.5 bg-amber-500/10 border border-amber-500/20 text-amber-400 font-bold rounded-lg text-xs">司機</span>
                                 ) : (
                                   <span className="text-slate-500">一般</span>
                                 )}
                               </td>
-                              <td className="p-3 text-center font-bold">{row.punch_times.length} 次</td>
+                              <td className="p-3 text-center font-bold text-[15px]">{row.punch_times.length} 次</td>
                               <td className="p-3">
                                 <div className="flex flex-wrap gap-1.5">
                                   {row.punch_times.map((t, idx) => {
@@ -672,7 +672,7 @@ export const SalaryReports: React.FC = () => {
                                       <span 
                                         key={idx} 
                                         className={cn(
-                                          "px-2 py-0.5 rounded font-mono font-semibold text-[10px] border",
+                                          "px-2 py-0.5 rounded font-mono font-semibold text-xs border",
                                           isOdd 
                                             ? "bg-indigo-500/10 border-indigo-500/20 text-indigo-400" 
                                             : "bg-emerald-500/10 border-emerald-500/20 text-emerald-400"
@@ -732,9 +732,9 @@ export const SalaryReports: React.FC = () => {
                       </h4>
 
                       <div className="overflow-x-auto border border-slate-850 rounded-xl bg-slate-950/20 print:border-gray-300">
-                        <table className="w-full text-left border-collapse text-[10px] print:text-black">
+                        <table className="w-full text-left border-collapse text-sm print:text-black">
                           <thead>
-                            <tr className="bg-slate-900 border-b border-slate-800 text-slate-400 font-bold text-center print:bg-gray-150 print:text-black">
+                            <tr className="bg-slate-900 border-b border-slate-800 text-slate-350 font-bold text-center text-sm md:text-[15px] print:bg-gray-150 print:text-black">
                               <th className="p-2 w-[20%]">日期</th>
                               <th className="p-2 w-[10%]">星期</th>
                               <th className="p-2 w-[20%]">打卡狀態</th>
@@ -760,16 +760,16 @@ export const SalaryReports: React.FC = () => {
                                           : "bg-transparent text-slate-350")
                                   )}
                                 >
-                                  <td className="p-2 font-mono">{day.date}</td>
-                                  <td className="p-2 font-semibold">{day.weekday}</td>
-                                  <td className="p-2 font-bold">
+                                  <td className="p-2 font-mono text-[15px] font-bold text-white/90">{day.date}</td>
+                                  <td className="p-2 font-bold text-[15px] text-white">{day.weekday}</td>
+                                  <td className="p-2 font-extrabold text-[15px]">
                                     {count > 0 ? (
                                       <span className="text-emerald-400 print:text-green-700">刷卡正常</span>
                                     ) : (
-                                      <span className="text-rose-500/80 font-normal print:text-gray-400">未刷卡/缺勤</span>
+                                      <span className="text-rose-500/80 font-bold print:text-gray-400">未刷卡/缺勤</span>
                                     )}
                                   </td>
-                                  <td className="p-2 font-bold">{count > 0 ? `${count} 次` : '-'}</td>
+                                  <td className="p-2 font-extrabold text-[15px] text-white">{count > 0 ? `${count} 次` : '-'}</td>
                                   <td className="p-2 text-left">
                                     <div className="flex flex-wrap gap-1">
                                       {punchRecord && punchRecord.punch_times.map((t, idx) => {
@@ -780,8 +780,8 @@ export const SalaryReports: React.FC = () => {
                                             className={cn(
                                               "px-2 py-0.5 rounded font-mono font-bold text-xs border transition-colors",
                                               isOdd 
-                                                ? "bg-indigo-500/10 border-indigo-500/20 text-indigo-400 print:bg-white print:border-gray-300 print:text-black" 
-                                                : "bg-emerald-500/10 border-emerald-500/20 text-emerald-400 print:bg-white print:border-gray-300 print:text-black"
+                                                ? "bg-indigo-500/10 border-indigo-500/20 text-indigo-450 print:bg-white print:border-gray-300 print:text-black" 
+                                                : "bg-emerald-500/10 border-emerald-500/20 text-emerald-450 print:bg-white print:border-gray-300 print:text-black"
                                             )}
                                           >
                                             {t}

@@ -354,9 +354,9 @@ export const EmployeeRoster: React.FC = () => {
 
         {/* Roster table */}
         <div className="overflow-x-auto border border-slate-850 bg-slate-950/20 rounded-xl">
-          <table className="w-full text-left border-collapse text-xs">
+          <table className="w-full text-left border-collapse text-sm">
             <thead>
-              <tr className="bg-slate-900/80 border-b border-slate-800 text-slate-300 font-bold text-center">
+              <tr className="bg-slate-900/80 border-b border-slate-800 text-slate-300 font-bold text-center text-sm md:text-[15px]">
                 <th className="p-3 text-left">卡號/工號</th>
                 <th className="p-3 text-left">姓名</th>
                 <th className="p-3 text-left">公務帳號</th>
@@ -379,13 +379,13 @@ export const EmployeeRoster: React.FC = () => {
                       idx % 2 === 1 ? "bg-slate-900/40" : "bg-transparent"
                     )}
                   >
-                    <td className="p-3 font-mono">{emp.emp_id}</td>
-                    <td className="p-3 font-semibold text-white">{emp.name}</td>
-                    <td className="p-3 font-mono">{emp.account_id || '-'}</td>
-                    <td className="p-3">{emp.shift_class || '-'}</td>
-                    <td className="p-3 text-center">
+                    <td className="p-3 font-mono text-[15px] font-bold text-white/90">{emp.emp_id}</td>
+                    <td className="p-3 font-semibold text-[15px] text-white">{emp.name}</td>
+                    <td className="p-3 font-mono text-[15px]">{emp.account_id || '-'}</td>
+                    <td className="p-3 text-[15px]">{emp.shift_class || '-'}</td>
+                    <td className="p-3 text-center text-[15px]">
                       {emp.is_driver ? (
-                        <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-amber-500/10 border border-amber-500/20 text-amber-400 font-bold rounded-lg text-[10px]">
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-amber-500/10 border border-amber-500/20 text-amber-400 font-bold rounded-lg text-xs">
                           司機
                         </span>
                       ) : (

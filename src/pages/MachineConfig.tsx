@@ -450,9 +450,9 @@ export const MachineConfig: React.FC = () => {
 
         {/* Machine Table */}
         <div className="overflow-x-auto border border-slate-850 bg-slate-950/20 rounded-xl">
-          <table className="w-full text-left border-collapse text-xs">
+          <table className="w-full text-left border-collapse text-sm">
             <thead>
-              <tr className="bg-slate-900 border-b border-slate-800 text-slate-300 font-bold">
+              <tr className="bg-slate-900 border-b border-slate-800 text-slate-300 font-bold text-sm md:text-[15px]">
                 <th className="p-3 text-left w-24">機號</th>
                 <th className="p-3 text-left">實體位置</th>
                 <th className="p-3 text-left">適用班別</th>
@@ -467,9 +467,9 @@ export const MachineConfig: React.FC = () => {
               ) : (
                 filtered.map((m, idx) => {
                   const shifts = m.shift_class === '共用' 
-                    ? [<span key="shared" className="px-1.5 py-0.5 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] font-bold rounded-lg">共用</span>]
+                    ? [<span key="shared" className="px-1.5 py-0.5 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold rounded-lg">共用</span>]
                     : m.shift_class.split(',').map((s, idx) => (
-                        <span key={idx} className="px-1.5 py-0.5 bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-[10px] font-bold rounded-lg me-1">
+                        <span key={idx} className="px-1.5 py-0.5 bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-bold rounded-lg me-1">
                           {s.trim()}
                         </span>
                       ));
@@ -482,9 +482,9 @@ export const MachineConfig: React.FC = () => {
                         idx % 2 === 1 ? "bg-slate-900/40" : "bg-transparent"
                       )}
                     >
-                      <td className="p-3 font-mono font-bold text-white">{m.machine_id}</td>
-                      <td className="p-3">{m.location || '-'}</td>
-                      <td className="p-3 flex flex-wrap gap-1">{shifts}</td>
+                      <td className="p-3 font-mono font-extrabold text-[15px] text-white">{m.machine_id}</td>
+                      <td className="p-3 text-[15px]">{m.location || '-'}</td>
+                      <td className="p-3 flex flex-wrap gap-1 items-center text-[15px]">{shifts}</td>
                       <td className="p-3">
                         <div className="flex justify-center items-center gap-1">
                           <button 
@@ -585,9 +585,9 @@ export const MachineConfig: React.FC = () => {
             </div>
 
             <div className="overflow-x-auto border border-slate-850 rounded-xl bg-slate-950/20 print:border-gray-400">
-              <table className="w-full text-left border-collapse text-xs print:text-black">
+              <table className="w-full text-left border-collapse text-sm print:text-black">
                 <thead>
-                  <tr className="bg-slate-900 border-b border-slate-800 text-slate-400 font-bold print:bg-gray-200 print:text-black">
+                  <tr className="bg-slate-900 border-b border-slate-800 text-slate-350 font-bold print:bg-gray-200 print:text-black text-sm md:text-[15px]">
                     <th className="p-3 w-28">卡號</th>
                     <th className="p-3 w-28">姓名</th>
                     <th className="p-3 w-28">班別</th>
@@ -611,14 +611,14 @@ export const MachineConfig: React.FC = () => {
                         <React.Fragment key={emp.emp_id}>
                           {/* Employee Header row */}
                           <tr className="bg-amber-500/[0.03] border-b border-slate-900 text-slate-300 print:bg-gray-100 print:text-black">
-                            <td className="p-3 font-mono font-bold text-indigo-400 print:text-black">{emp.emp_id}</td>
-                            <td className="p-3 font-bold text-white print:text-black">{emp.name}</td>
+                            <td className="p-3 font-mono font-bold text-[15px] text-indigo-400 print:text-black">{emp.emp_id}</td>
+                            <td className="p-3 font-bold text-[15px] text-white print:text-black">{emp.name}</td>
                             <td className="p-3">
-                              <span className="px-1.5 py-0.5 bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-[10px] font-bold rounded-lg print:border-gray-400 print:text-black">
+                              <span className="px-1.5 py-0.5 bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-bold rounded-lg print:border-gray-400 print:text-black">
                                 {emp.shift_class || '-'}
                               </span>
                             </td>
-                            <td colSpan={4} className="p-3 text-slate-500 text-xs font-semibold">共 {totalCount} 筆異常紀錄</td>
+                            <td colSpan={4} className="p-3 text-slate-400 text-sm font-bold">共 {totalCount} 筆異常紀錄</td>
                           </tr>
                           
                           {/* Daily details */}
@@ -626,10 +626,10 @@ export const MachineConfig: React.FC = () => {
                             punches.map((punch, idx) => (
                               <tr key={`${date}_${idx}`} className="border-b border-slate-900/60 text-slate-300 print:border-gray-200">
                                 <td></td><td></td><td></td>
-                                <td className="p-2 text-slate-500 font-mono">{idx === 0 ? date : ''}</td>
-                                <td className="p-2 font-mono font-semibold">{punch.time}</td>
-                                <td className="p-2 font-mono font-bold text-rose-400 print:text-red-600">{punch.machine_id}</td>
-                                <td className="p-2 text-slate-400 text-[11px]">{punch.machine_location}</td>
+                                <td className="p-2 text-slate-450 font-mono text-[15px]">{idx === 0 ? date : ''}</td>
+                                <td className="p-2 font-mono text-[15px] font-semibold">{punch.time}</td>
+                                <td className="p-2 font-mono text-[15px] font-bold text-rose-400 print:text-red-600">{punch.machine_id}</td>
+                                <td className="p-2 text-slate-300 text-[15px]">{punch.machine_location}</td>
                               </tr>
                             ))
                           )}

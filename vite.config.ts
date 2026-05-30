@@ -10,7 +10,7 @@ function buildTime(): string {
 }
 
 export default defineConfig({
-  base: './',
+  base: '/cp_pwa/',
   define: {
     __BUILD_TIME__: JSON.stringify(buildTime()),
   },
