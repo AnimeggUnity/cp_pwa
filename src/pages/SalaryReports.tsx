@@ -466,12 +466,12 @@ export const SalaryReports: React.FC = () => {
                   <table className="w-full text-left border-collapse text-sm" id="rendered-report-table">
                     <thead>
                       <tr className="bg-slate-900 border-b border-slate-800 text-slate-300 font-bold text-center text-sm md:text-[15px]">
-                        <th className="p-3 text-left">員工卡號</th>
-                        <th className="p-3 text-left">姓名</th>
-                        <th className="p-3 text-left">班別</th>
-                        <th className="p-3 text-left">身分屬性</th>
-                        <th className="p-3 text-center">符合次數</th>
-                        <th className="p-3 text-left">打卡符合日期明細 (日)</th>
+                        <th className="p-3 text-left min-w-[6rem] whitespace-nowrap">員工卡號</th>
+                        <th className="p-3 text-left min-w-[6rem] whitespace-nowrap">姓名</th>
+                        <th className="p-3 text-left min-w-[6rem] whitespace-nowrap">班別</th>
+                        <th className="p-3 text-left min-w-[6rem] whitespace-nowrap">身分屬性</th>
+                        <th className="p-3 text-center min-w-[6rem] whitespace-nowrap">符合次數</th>
+                        <th className="p-3 text-left w-full">打卡符合日期明細 (日)</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -481,24 +481,24 @@ export const SalaryReports: React.FC = () => {
                         </tr>
                       ) : (
                         data.map((row, idx) => (
-                          <tr 
-                            key={row.emp_id} 
+                          <tr
+                            key={row.emp_id}
                             className={cn(
                               "border-b border-slate-900 hover:bg-slate-900/30 text-slate-300 transition-colors",
                               idx % 2 === 1 ? "bg-slate-900/40" : "bg-transparent"
                             )}
                           >
-                            <td className="p-3 font-mono text-[15px] font-bold text-white/90">{row.emp_id}</td>
-                            <td className="p-3 font-semibold text-[15px] text-white">{row.name}</td>
-                            <td className="p-3 text-[15px] text-slate-300">{row.shift_class}</td>
-                            <td className="p-3 text-[15px]">
+                            <td className="p-3 font-mono text-[15px] font-bold text-white/90 whitespace-nowrap">{row.emp_id}</td>
+                            <td className="p-3 font-semibold text-[15px] text-white whitespace-nowrap">{row.name}</td>
+                            <td className="p-3 text-[15px] text-slate-300 whitespace-nowrap">{row.shift_class}</td>
+                            <td className="p-3 text-[15px] whitespace-nowrap">
                               {row.is_driver ? (
                                 <span className="px-1.5 py-0.5 bg-amber-500/10 border border-amber-500/20 text-amber-400 font-bold rounded-lg text-xs">司機</span>
                               ) : (
                                 <span className="text-slate-500">一般員工</span>
                               )}
                             </td>
-                            <td className="p-3 text-center font-bold text-[15px] text-emerald-400">{row.count} 次</td>
+                            <td className="p-3 text-center font-bold text-[15px] text-emerald-400 whitespace-nowrap">{row.count} 次</td>
                             <td className="p-3 break-all font-mono text-[15px] text-slate-300">{row.dates.sort().join(', ')}</td>
                           </tr>
                         ))
