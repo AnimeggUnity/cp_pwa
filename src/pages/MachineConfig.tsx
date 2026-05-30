@@ -626,7 +626,7 @@ export const MachineConfig: React.FC = () => {
                             punches.map((punch, idx) => (
                               <tr key={`${date}_${idx}`} className="border-b border-slate-900/60 text-slate-300 print:border-gray-200">
                                 <td></td><td></td><td></td>
-                                <td className="p-2 text-slate-450 font-mono text-[15px]">{idx === 0 ? date : ''}</td>
+                                <td className="p-2 text-slate-400 font-mono text-[15px]">{idx === 0 ? date : ''}</td>
                                 <td className="p-2 font-mono text-[15px] font-semibold">{punch.time}</td>
                                 <td className="p-2 font-mono text-[15px] font-bold text-rose-400 print:text-red-600">{punch.machine_id}</td>
                                 <td className="p-2 text-slate-300 text-[15px]">{punch.machine_location}</td>

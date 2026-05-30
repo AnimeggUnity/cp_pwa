@@ -595,7 +595,7 @@ export const SalaryReports: React.FC = () => {
                               >
                                 <td className="p-2">
                                   <div className="font-bold text-white text-xs print:text-black">{emp.name}</div>
-                                  <div className="text-[10px] text-slate-450 font-mono print:text-gray-600">{emp.emp_id} {emp.is_driver ? '[司機]' : ''}</div>
+                                  <div className="text-[10px] text-slate-400 font-mono print:text-gray-600">{emp.emp_id} {emp.is_driver ? '[司機]' : ''}</div>
                                 </td>
                                 <td className="p-2 text-center font-bold text-xs">{emp.punch_times.length}</td>
                                 <td className="p-2">
@@ -781,8 +781,8 @@ export const SalaryReports: React.FC = () => {
                                             className={cn(
                                               "px-2 py-0.5 rounded font-mono font-bold text-xs border transition-colors",
                                               isOdd 
-                                                ? "bg-indigo-500/10 border-indigo-500/20 text-indigo-450 print:bg-white print:border-gray-300 print:text-black" 
-                                                : "bg-emerald-500/10 border-emerald-500/20 text-emerald-450 print:bg-white print:border-gray-300 print:text-black"
+                                                ? "bg-indigo-500/10 border-indigo-500/20 text-indigo-400 print:bg-white print:border-gray-300 print:text-black"
+                                                : "bg-emerald-500/10 border-emerald-500/20 text-emerald-400 print:bg-white print:border-gray-300 print:text-black"
                                             )}
                                           >
                                             {t}

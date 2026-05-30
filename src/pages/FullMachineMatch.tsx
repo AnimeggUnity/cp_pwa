@@ -505,7 +505,7 @@ export const FullMachineMatch: React.FC = () => {
                                               matchedAnomaly?.isUnknown
                                                 ? "bg-orange-500/15 border-orange-500/30 text-orange-400 font-extrabold shadow-sm print:bg-orange-50 print:border-orange-300 print:text-orange-800"
                                                 : matchedAnomaly
-                                                  ? "bg-rose-500/15 border-rose-500/30 text-rose-450 font-extrabold shadow-sm shadow-rose-950/20 print:bg-rose-50 print:border-red-300 print:text-red-750"
+                                                  ? "bg-rose-500/15 border-rose-500/30 text-rose-400 font-extrabold shadow-sm shadow-rose-950/20 print:bg-rose-50 print:border-red-300 print:text-red-700"
                                                   : (isOdd
                                                       ? "bg-indigo-500/10 border-indigo-500/20 text-indigo-400 print:bg-white print:border-gray-300 print:text-black"
                                                       : "bg-emerald-500/10 border-emerald-500/20 text-emerald-400 print:bg-white print:border-gray-300 print:text-black")
