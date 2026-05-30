@@ -266,7 +266,8 @@ export const EmployeeRoster: React.FC = () => {
         <p className="text-xs text-slate-400 leading-relaxed mb-4">
           <strong>智慧雙格式支援：</strong>直接從 Excel 複製以下任一格式並於下方貼上，系統會智慧解析欄位：<br />
           • 格式 A：<code>班別  卡號  姓名  公務帳號  司機</code> (完整名冊)<br />
-          • 格式 B：<code>公務帳號  卡號  姓名</code> (獨立司機名名冊，自動更新現有員工屬性)
+          • 格式 B：<code>公務帳號  卡號  姓名</code> (獨立司機名名冊，自動更新現有員工屬性)<br />
+          <span className="text-slate-500">支援分隔符：<strong className="text-slate-400">Tab</strong>（Excel 複製貼上）、<strong className="text-slate-400">逗號</strong>、<strong className="text-slate-400">兩個以上空格</strong>。單一空格不支援。</span>
         </p>
 
         {/* Text Area for Pasting */}

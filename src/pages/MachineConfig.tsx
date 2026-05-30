@@ -353,7 +353,8 @@ export const MachineConfig: React.FC = () => {
         </div>
 
         <p className="text-xs text-slate-400 leading-relaxed mb-4">
-          從 Excel 複製後貼上，欄位順序：<code>機號</code>、<code>位置</code>、<code>班別</code>。班別填「共用」表示所有班別皆可刷此機台。
+          從 Excel 複製後貼上，欄位順序：<code>機號</code>、<code>位置</code>、<code>班別</code>。班別填「共用」表示所有班別皆可刷此機台。<br />
+          <span className="text-slate-500">支援分隔符：<strong className="text-slate-400">Tab</strong>（Excel 複製貼上）、<strong className="text-slate-400">逗號</strong>、<strong className="text-slate-400">兩個以上空格</strong>。單一空格不支援。</span>
         </p>
 
         {/* Text Area for Pasting */}
