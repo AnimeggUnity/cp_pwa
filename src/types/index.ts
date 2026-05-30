@@ -81,3 +81,13 @@ export interface NoShiftPunchRecord {
   machine_id: string;
   machine_location: string;
 }
+
+export interface UnknownMachineRecord {
+  emp_id: string;
+  account_id: string;
+  name: string;
+  shift_class: string;
+  date: string;
+  time: string;
+  machine_id: string;
+}

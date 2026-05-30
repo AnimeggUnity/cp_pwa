@@ -70,14 +70,18 @@ export const FullMachineMatch: React.FC = () => {
   const getAnomalyLocations = (row: IntegratedRecord) => {
     if (machineList.length === 0) return [];
     if (!row.shift_class || row.shift_class === '未設定班別') return [];
-    const anomalies: { time: string; location: string }[] = [];
+    const anomalies: { time: string; location: string; isUnknown: boolean }[] = [];
 
     (row.punch_records || []).forEach(punch => {
       if (!punch.machine_id) return;
       const machine = machineMap.get(punch.machine_id);
-      if (!machine || machine.isShared) return;
+      if (!machine) {
+        anomalies.push({ time: punch.time, location: `未登記 (${punch.machine_id})`, isUnknown: true });
+        return;
+      }
+      if (machine.isShared) return;
       if (!machine.allowed.has(row.shift_class)) {
-        anomalies.push({ time: punch.time, location: machine.location });
+        anomalies.push({ time: punch.time, location: machine.location, isUnknown: false });
       }
     });
     return anomalies;
@@ -179,7 +183,7 @@ export const FullMachineMatch: React.FC = () => {
     if (showAnomalyCol) header.push('異常位置對照');
 
     const rows: any[][] = [header];
-    const anomalyRows: any[][] = [['卡號', '姓名', '班別', '日期', '星期', '異常打卡時間', '異常打卡機位置']];
+    const anomalyRows: any[][] = [['卡號', '姓名', '班別', '日期', '星期', '異常打卡時間', '異常打卡機位置', '異常類型']];
     
     // Export based on active shift filter
     const activeList = shiftFilter === 'all'
@@ -215,7 +219,8 @@ export const FullMachineMatch: React.FC = () => {
               day.date,
               day.weekday,
               a.time,
-              a.location
+              a.location,
+              a.isUnknown ? '未登記機台' : '跨班刷卡'
             ]);
           });
         }
@@ -491,17 +496,19 @@ export const FullMachineMatch: React.FC = () => {
                                     <div className="flex flex-wrap gap-1">
                                       {punchRecord && punchRecord.punch_times.map((t, idx) => {
                                         const isOdd = (idx + 1) % 2 === 1;
-                                        const isAnomaly = anomalies.some(anom => anom.time === t);
+                                        const matchedAnomaly = anomalies.find(anom => anom.time === t);
                                         return (
-                                          <span 
-                                            key={idx} 
+                                          <span
+                                            key={idx}
                                             className={cn(
                                               "px-2 py-0.5 rounded font-mono font-bold text-xs border transition-colors",
-                                              isAnomaly
-                                                ? "bg-rose-500/15 border-rose-500/30 text-rose-450 font-extrabold shadow-sm shadow-rose-950/20 print:bg-rose-50 print:border-red-300 print:text-red-750"
-                                                : (isOdd 
-                                                    ? "bg-indigo-500/10 border-indigo-500/20 text-indigo-400 print:bg-white print:border-gray-300 print:text-black" 
-                                                    : "bg-emerald-500/10 border-emerald-500/20 text-emerald-400 print:bg-white print:border-gray-300 print:text-black")
+                                              matchedAnomaly?.isUnknown
+                                                ? "bg-orange-500/15 border-orange-500/30 text-orange-400 font-extrabold shadow-sm print:bg-orange-50 print:border-orange-300 print:text-orange-800"
+                                                : matchedAnomaly
+                                                  ? "bg-rose-500/15 border-rose-500/30 text-rose-450 font-extrabold shadow-sm shadow-rose-950/20 print:bg-rose-50 print:border-red-300 print:text-red-750"
+                                                  : (isOdd
+                                                      ? "bg-indigo-500/10 border-indigo-500/20 text-indigo-400 print:bg-white print:border-gray-300 print:text-black"
+                                                      : "bg-emerald-500/10 border-emerald-500/20 text-emerald-400 print:bg-white print:border-gray-300 print:text-black")
                                             )}
                                           >
                                             {t}
@@ -515,8 +522,19 @@ export const FullMachineMatch: React.FC = () => {
                                       {anomalies.length > 0 ? (
                                         <div className="space-y-1">
                                           {anomalies.map((anom, idx) => (
-                                            <div key={idx} className="text-rose-400 print:text-red-600 font-semibold text-xs flex items-center gap-1.5">
-                                              <span className="w-1 h-1 bg-rose-500 rounded-full animate-ping"></span>
+                                            <div
+                                              key={idx}
+                                              className={cn(
+                                                "font-semibold text-xs flex items-center gap-1.5",
+                                                anom.isUnknown
+                                                  ? "text-orange-400 print:text-orange-700"
+                                                  : "text-rose-400 print:text-red-600"
+                                              )}
+                                            >
+                                              <span className={cn(
+                                                "w-1 h-1 rounded-full animate-ping",
+                                                anom.isUnknown ? "bg-orange-500" : "bg-rose-500"
+                                              )}></span>
                                               {anom.time} → {anom.location}
                                             </div>
                                           ))}

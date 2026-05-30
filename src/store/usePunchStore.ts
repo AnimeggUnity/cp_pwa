@@ -1,14 +1,15 @@
 import { create } from 'zustand';
 import { get, set } from 'idb-keyval';
-import type { 
-  Employee, 
-  Machine, 
-  PunchRecord, 
-  LeaveRecord, 
-  IntegratedRecord, 
+import type {
+  Employee,
+  Machine,
+  PunchRecord,
+  LeaveRecord,
+  IntegratedRecord,
   SystemLog,
   MachineAnomalyRecord,
-  NoShiftPunchRecord
+  NoShiftPunchRecord,
+  UnknownMachineRecord
 } from '../types';
 
 interface PunchState {
@@ -23,6 +24,7 @@ interface PunchState {
   isLoading: boolean;
   lastAnomalyData: MachineAnomalyRecord[];
   lastNoShiftData: NoShiftPunchRecord[];
+  lastUnknownMachineData: UnknownMachineRecord[];
 
   // Actions
   addLog: (message: string, type?: SystemLog['type']) => void;
@@ -51,7 +53,7 @@ interface PunchState {
 
   // Business Logic
   runETLPipeline: () => { success: boolean; count: number; dateRange: string };
-  generateMachineAnomalyReport: () => { success: boolean; anomalyCount: number; noShiftCount: number };
+  generateMachineAnomalyReport: () => { success: boolean; anomalyCount: number; noShiftCount: number; unknownCount: number };
 }
 
 export const usePunchStore = create<PunchState>((setStore, getStore) => ({
@@ -65,6 +67,7 @@ export const usePunchStore = create<PunchState>((setStore, getStore) => ({
   isLoading: false,
   lastAnomalyData: [],
   lastNoShiftData: [],
+  lastUnknownMachineData: [],
 
   addLog: (message: string, type: SystemLog['type'] = 'info') => {
     const time = new Date().toLocaleTimeString();
@@ -541,6 +544,7 @@ export const usePunchStore = create<PunchState>((setStore, getStore) => ({
 
     const anomalies: MachineAnomalyRecord[] = [];
     const noShiftRecords: NoShiftPunchRecord[] = [];
+    const unknownRecords: UnknownMachineRecord[] = [];
 
     integratedPunchData.forEach(record => {
       if (!record.punch_records) return;
@@ -564,7 +568,19 @@ export const usePunchStore = create<PunchState>((setStore, getStore) => ({
       record.punch_records.forEach(punch => {
         if (!punch.machine_id) return;
         const machine = machineMap.get(punch.machine_id);
-        if (!machine || machine.isShared) return;
+        if (!machine) {
+          unknownRecords.push({
+            emp_id: record.emp_id,
+            account_id: record.account_id,
+            name: record.name,
+            shift_class: record.shift_class,
+            date: record.punch_date,
+            time: punch.time,
+            machine_id: punch.machine_id
+          });
+          return;
+        }
+        if (machine.isShared) return;
         if (machine.allowed.has(record.shift_class)) return;
 
         anomalies.push({
@@ -588,10 +604,11 @@ export const usePunchStore = create<PunchState>((setStore, getStore) => ({
 
     setStore({
       lastAnomalyData: anomalies,
-      lastNoShiftData: noShiftRecords
+      lastNoShiftData: noShiftRecords,
+      lastUnknownMachineData: unknownRecords
     });
 
-    addLog(`比對完成，發現 ${anomalies.length} 筆需確認記錄。`, anomalies.length > 0 ? 'warning' : 'success');
-    return { success: true, anomalyCount: anomalies.length, noShiftCount: noShiftRecords.length };
+    addLog(`比對完成，發現 ${anomalies.length} 筆跨班異常、${unknownRecords.length} 筆未登記機台刷卡。`, anomalies.length > 0 || unknownRecords.length > 0 ? 'warning' : 'success');
+    return { success: true, anomalyCount: anomalies.length, noShiftCount: noShiftRecords.length, unknownCount: unknownRecords.length };
   }
 }));
