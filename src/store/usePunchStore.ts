@@ -479,7 +479,7 @@ export const usePunchStore = create<PunchState>((setStore, getStore) => ({
             punch_records: []
           });
         }
-        grouped.get(key).punch_records.push({ time: row.punch_time, machine_id: row.machine_id || '' });
+        grouped.get(key).punch_records.push({ time: row.punch_time, machine_id: row.machine_id || '', location: row.location || '' });
       });
 
       // 3. Deduplicate punch times + sort
@@ -576,7 +576,8 @@ export const usePunchStore = create<PunchState>((setStore, getStore) => ({
             shift_class: record.shift_class,
             date: record.punch_date,
             time: punch.time,
-            machine_id: punch.machine_id
+            machine_id: punch.machine_id,
+            raw_location: punch.location || ''
           });
           return;
         }

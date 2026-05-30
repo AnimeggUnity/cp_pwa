@@ -76,7 +76,8 @@ export const FullMachineMatch: React.FC = () => {
       if (!punch.machine_id) return;
       const machine = machineMap.get(punch.machine_id);
       if (!machine) {
-        anomalies.push({ time: punch.time, location: `未登記 (${punch.machine_id})`, isUnknown: true });
+        const rawLoc = punch.location ? `${punch.machine_id} ${punch.location}` : `未登記 (${punch.machine_id})`;
+        anomalies.push({ time: punch.time, location: rawLoc, isUnknown: true });
         return;
       }
       if (machine.isShared) return;

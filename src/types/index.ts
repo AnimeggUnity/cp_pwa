@@ -39,6 +39,7 @@ export interface LeaveRecord {
 export interface IntegratedPunchRecord {
   time: string;
   machine_id: string;
+  location?: string;
 }
 
 export interface IntegratedRecord {
@@ -90,4 +91,5 @@ export interface UnknownMachineRecord {
   date: string;
   time: string;
   machine_id: string;
+  raw_location: string;
 }
