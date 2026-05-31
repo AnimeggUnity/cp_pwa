@@ -43,7 +43,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => 
     <aside 
       className={cn(
         "bg-slate-900 border-r border-slate-800 text-slate-300 transition-all duration-300 flex flex-col h-screen no-print",
-        isCollapsed ? "w-16" : "w-64"
+        isCollapsed ? "w-16" : "w-72"
       )}
     >
       {/* Brand area */}
@@ -97,19 +97,19 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => 
       {!isCollapsed && (
         <div className="p-4 border-t border-slate-800 bg-slate-950/40">
           <div className="flex justify-between items-center mb-2">
-            <label className="text-[10px] uppercase font-bold tracking-wider text-indigo-400 flex items-center gap-1.5">
+            <label className="text-xs uppercase font-bold tracking-wider text-indigo-400 flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 bg-indigo-500 rounded-full animate-pulse"></span>
               系統日誌
             </label>
-            <button 
+            <button
               onClick={clearLogs}
-              className="text-[10px] text-slate-500 hover:text-red-400 flex items-center gap-0.5 transition-colors border border-slate-800 px-1.5 py-0.5 rounded"
+              className="text-xs text-slate-500 hover:text-red-400 flex items-center gap-0.5 transition-colors border border-slate-800 px-1.5 py-0.5 rounded"
             >
               <Trash2 className="w-2.5 h-2.5" />
               清除
             </button>
           </div>
-          <div ref={logBoxRef} className="h-32 border border-slate-850 bg-slate-950/90 rounded-lg p-2 font-mono text-[10px] overflow-y-auto scrollbar-thin scrollbar-thumb-slate-800">
+          <div ref={logBoxRef} className="h-36 border border-slate-850 bg-slate-950/90 rounded-lg p-2 font-mono text-[11px] overflow-y-auto scrollbar-thin scrollbar-thumb-slate-800">
             {logs.map((log) => (
               <div 
                 key={log.id} 

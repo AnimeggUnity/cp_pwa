@@ -378,12 +378,12 @@ export const FullMachineMatch: React.FC = () => {
               <button
                 onClick={() => { setShiftFilter('all'); setOnlyAnomaly(false); setCurrentPage(1); }}
                 className={cn(
-                  "px-2.5 py-1 text-[11px] rounded-lg transition-colors font-semibold flex items-center gap-1",
+                  "px-2.5 py-1 text-sm rounded-lg transition-colors font-semibold flex items-center gap-1",
                   shiftFilter === 'all' ? "bg-indigo-600 text-white" : "hover:bg-slate-850 text-slate-400"
                 )}
               >
                 全部 ({employees.length}人)
-                {totalAnomalies > 0 && <span className="px-1.5 py-0.2 bg-red-600 text-white text-[9px] font-bold rounded-full ml-1">{totalAnomalies}</span>}
+                {totalAnomalies > 0 && <span className="px-1.5 py-0.2 bg-red-600 text-white text-[11px] font-bold rounded-full ml-1">{totalAnomalies}</span>}
               </button>
               {allShifts.map(shift => {
                 const shiftEmps = employees.filter(e => e.shift_class === shift);
@@ -393,12 +393,12 @@ export const FullMachineMatch: React.FC = () => {
                     key={shift}
                     onClick={() => { setShiftFilter(shift); setOnlyAnomaly(false); setCurrentPage(1); }}
                     className={cn(
-                      "px-2.5 py-1 text-[11px] rounded-lg transition-colors font-semibold flex items-center gap-1",
+                      "px-2.5 py-1 text-sm rounded-lg transition-colors font-semibold flex items-center gap-1",
                       shiftFilter === shift ? "bg-indigo-600 text-white" : "hover:bg-slate-850 text-slate-400"
                     )}
                   >
                     {shift} ({shiftEmps.length}人)
-                    {shiftAnomalyCount > 0 && <span className="px-1.5 py-0.2 bg-red-600 text-white text-[9px] font-bold rounded-full ml-1">{shiftAnomalyCount}</span>}
+                    {shiftAnomalyCount > 0 && <span className="px-1.5 py-0.2 bg-red-600 text-white text-[11px] font-bold rounded-full ml-1">{shiftAnomalyCount}</span>}
                   </button>
                 );
               })}
@@ -407,7 +407,7 @@ export const FullMachineMatch: React.FC = () => {
             {/* Print Header */}
             <div className="page-header text-center mb-6 py-2 border-b border-slate-900 hidden print:block">
               <h2 className="text-xl font-bold text-black">完整打卡紀錄 + 機號比對報表</h2>
-              <div className="text-[10px] text-gray-500 mt-1">報表區間: {fullDateList[0]?.date} ~ {fullDateList[fullDateList.length - 1]?.date}</div>
+              <div className="text-xs text-gray-500 mt-1">報表區間: {fullDateList[0]?.date} ~ {fullDateList[fullDateList.length - 1]?.date}</div>
             </div>
 
             {/* Cards container */}
@@ -431,7 +431,7 @@ export const FullMachineMatch: React.FC = () => {
                       <h4 className="text-sm font-bold text-indigo-400 border-b border-slate-850 pb-2 flex items-center justify-between mb-3 print:text-black print:border-gray-300">
                         <span className="flex items-center gap-1.5">
                           [{emp.emp_id}] {emp.name} ({emp.shift_class})
-                          {emp.is_driver && <span className="px-1.5 py-0.2 bg-amber-500/10 border border-amber-500/20 text-amber-400 text-[9px] font-bold rounded-lg">司機</span>}
+                          {emp.is_driver && <span className="px-1.5 py-0.2 bg-amber-500/10 border border-amber-500/20 text-amber-400 text-[11px] font-bold rounded-lg">司機</span>}
                         </span>
                         
                         {/* Employee Anomaly Indicator */}
@@ -442,7 +442,7 @@ export const FullMachineMatch: React.FC = () => {
                           });
                           if (totalEmpAnom > 0) {
                             return (
-                              <span className="px-2 py-0.5 bg-rose-500/10 border border-rose-500/20 text-rose-400 text-[10px] font-bold rounded-lg print:border-gray-400 print:text-black">
+                              <span className="px-2 py-0.5 bg-rose-500/10 border border-rose-500/20 text-rose-400 text-xs font-bold rounded-lg print:border-gray-400 print:text-black">
                                 {totalEmpAnom} 筆異常
                               </span>
                             );
@@ -454,7 +454,7 @@ export const FullMachineMatch: React.FC = () => {
                       <div className="overflow-x-auto border border-slate-850 rounded-xl bg-slate-950/20 print:border-gray-300">
                         <table className="w-full text-left border-collapse text-sm print:text-black">
                           <thead>
-                            <tr className="bg-slate-900 border-b border-slate-800 text-slate-300 font-bold text-center text-sm md:text-[15px] print:bg-gray-150 print:text-black">
+                            <tr className="bg-slate-900 border-b border-slate-800 text-slate-300 font-bold text-center text-sm md:text-base print:bg-gray-150 print:text-black">
                               <th className="py-3 px-1.5 w-[13%]">日期</th>
                               <th className="py-3 px-1.5 w-[6%]">星期</th>
                               <th className="py-3 px-1.5 w-[11%]">打卡狀態</th>
@@ -483,16 +483,16 @@ export const FullMachineMatch: React.FC = () => {
                                           : "bg-transparent text-slate-350")
                                   )}
                                 >
-                                  <td className="py-3 px-1.5 font-mono text-[15px] font-bold text-white/90">{day.date}</td>
-                                  <td className="py-3 px-1.5 font-bold text-[15px] text-white">{day.weekday}</td>
-                                  <td className="py-3 px-1.5 font-extrabold text-[15px]">
+                                  <td className="py-3 px-1.5 font-mono text-base font-bold text-white/90">{day.date}</td>
+                                  <td className="py-3 px-1.5 font-bold text-base text-white">{day.weekday}</td>
+                                  <td className="py-3 px-1.5 font-extrabold text-base">
                                     {count > 0 ? (
                                       <span className="text-emerald-400 print:text-green-700">正常</span>
                                     ) : (
                                       <span className="text-rose-500/80 font-bold print:text-gray-400">未刷卡</span>
                                     )}
                                   </td>
-                                  <td className="py-3 px-1.5 font-extrabold text-[15px] text-white">{count > 0 ? `${count} 次` : '-'}</td>
+                                  <td className="py-3 px-1.5 font-extrabold text-base text-white">{count > 0 ? `${count} 次` : '-'}</td>
                                   <td className="p-2 text-left">
                                     <div className="flex flex-wrap gap-1">
                                       {punchRecord && punchRecord.punch_times.map((t, idx) => {

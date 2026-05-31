@@ -381,15 +381,15 @@ export const MachineConfig: React.FC = () => {
         <div className="grid grid-cols-3 gap-4 mb-6">
           <div className="bg-slate-950/40 border border-slate-850 p-4 rounded-xl">
             <div className="text-xl font-bold text-white font-mono">{totalCount}</div>
-            <span className="text-[10px] text-slate-500 font-semibold tracking-wider uppercase">總機台數</span>
+            <span className="text-xs text-slate-500 font-semibold tracking-wider uppercase">總機台數</span>
           </div>
           <div className="bg-slate-950/40 border border-slate-850 p-4 rounded-xl">
             <div className="text-xl font-bold text-emerald-400 font-mono">{sharedCount}</div>
-            <span className="text-[10px] text-slate-500 font-semibold tracking-wider uppercase">共用機台</span>
+            <span className="text-xs text-slate-500 font-semibold tracking-wider uppercase">共用機台</span>
           </div>
           <div className="bg-slate-950/40 border border-slate-850 p-4 rounded-xl">
             <div className="text-xl font-bold text-violet-400 font-mono">{shiftOnlyCount}</div>
-            <span className="text-[10px] text-slate-500 font-semibold tracking-wider uppercase">已設定班別數</span>
+            <span className="text-xs text-slate-500 font-semibold tracking-wider uppercase">已設定班別數</span>
           </div>
         </div>
 
@@ -425,7 +425,7 @@ export const MachineConfig: React.FC = () => {
             <button
               onClick={() => setShiftFilter('all')}
               className={cn(
-                "px-2.5 py-1 text-[11px] rounded-lg transition-colors font-semibold",
+                "px-2.5 py-1 text-sm rounded-lg transition-colors font-semibold",
                 shiftFilter === 'all' ? "bg-indigo-600 text-white" : "hover:bg-slate-850 text-slate-400"
               )}
             >
@@ -438,7 +438,7 @@ export const MachineConfig: React.FC = () => {
                   key={shift}
                   onClick={() => setShiftFilter(shift)}
                   className={cn(
-                    "px-2.5 py-1 text-[11px] rounded-lg transition-colors font-semibold",
+                    "px-2.5 py-1 text-sm rounded-lg transition-colors font-semibold",
                     shiftFilter === shift ? "bg-indigo-600 text-white" : "hover:bg-slate-850 text-slate-400"
                   )}
                 >
@@ -453,7 +453,7 @@ export const MachineConfig: React.FC = () => {
         <div className="overflow-x-auto border border-slate-850 bg-slate-950/20 rounded-xl">
           <table className="w-full text-left border-collapse text-sm">
             <thead>
-              <tr className="bg-slate-900 border-b border-slate-800 text-slate-300 font-bold text-sm md:text-[15px]">
+              <tr className="bg-slate-900 border-b border-slate-800 text-slate-300 font-bold text-sm md:text-base">
                 <th className="p-3 text-left w-24">機號</th>
                 <th className="p-3 text-left">實體位置</th>
                 <th className="p-3 text-left">適用班別</th>
@@ -483,9 +483,9 @@ export const MachineConfig: React.FC = () => {
                         idx % 2 === 1 ? "bg-slate-900/40" : "bg-transparent"
                       )}
                     >
-                      <td className="p-3 font-mono font-extrabold text-[15px] text-white">{m.machine_id}</td>
-                      <td className="p-3 text-[15px]">{m.location || '-'}</td>
-                      <td className="p-3 flex flex-wrap gap-1 items-center text-[15px]">{shifts}</td>
+                      <td className="p-3 font-mono font-extrabold text-base text-white">{m.machine_id}</td>
+                      <td className="p-3 text-base">{m.location || '-'}</td>
+                      <td className="p-3 flex flex-wrap gap-1 items-center text-base">{shifts}</td>
                       <td className="p-3">
                         <div className="flex justify-center items-center gap-1">
                           <button 
@@ -556,7 +556,7 @@ export const MachineConfig: React.FC = () => {
               <h4 className="text-sm font-bold text-white flex items-center gap-1.5">
                 <AlertTriangle className="w-4 h-4 text-rose-500 animate-pulse" />
                 需確認打卡記錄
-                <span className="px-2 py-0.5 bg-rose-500/10 border border-rose-500/20 text-rose-400 font-bold rounded-lg text-[10px] ml-1">
+                <span className="px-2 py-0.5 bg-rose-500/10 border border-rose-500/20 text-rose-400 font-bold rounded-lg text-xs ml-1">
                   {lastAnomalyData.length} 筆
                 </span>
               </h4>
@@ -582,13 +582,13 @@ export const MachineConfig: React.FC = () => {
             {/* Print Header */}
             <div className="page-header text-center mb-4 py-1 border-b border-slate-900 hidden print:block">
               <h2 className="text-base font-bold text-black">機號比對異常刷卡報表</h2>
-              <div className="text-[9px] text-gray-500">需確認打卡紀錄共 {lastAnomalyData.length} 筆</div>
+              <div className="text-[11px] text-gray-500">需確認打卡紀錄共 {lastAnomalyData.length} 筆</div>
             </div>
 
             <div className="overflow-x-auto border border-slate-850 rounded-xl bg-slate-950/20 print:border-gray-400">
               <table className="w-full text-left border-collapse text-sm print:text-black">
                 <thead>
-                  <tr className="bg-slate-900 border-b border-slate-800 text-slate-350 font-bold print:bg-gray-200 print:text-black text-sm md:text-[15px]">
+                  <tr className="bg-slate-900 border-b border-slate-800 text-slate-350 font-bold print:bg-gray-200 print:text-black text-sm md:text-base">
                     <th className="p-3 w-28">卡號</th>
                     <th className="p-3 w-28">姓名</th>
                     <th className="p-3 w-28">班別</th>
@@ -612,8 +612,8 @@ export const MachineConfig: React.FC = () => {
                         <React.Fragment key={emp.emp_id}>
                           {/* Employee Header row */}
                           <tr className="bg-amber-500/[0.03] border-b border-slate-900 text-slate-300 print:bg-gray-100 print:text-black">
-                            <td className="p-3 font-mono font-bold text-[15px] text-indigo-400 print:text-black">{emp.emp_id}</td>
-                            <td className="p-3 font-bold text-[15px] text-white print:text-black">{emp.name}</td>
+                            <td className="p-3 font-mono font-bold text-base text-indigo-400 print:text-black">{emp.emp_id}</td>
+                            <td className="p-3 font-bold text-base text-white print:text-black">{emp.name}</td>
                             <td className="p-3">
                               <span className="px-1.5 py-0.5 bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-bold rounded-lg print:border-gray-400 print:text-black">
                                 {emp.shift_class || '-'}
@@ -627,10 +627,10 @@ export const MachineConfig: React.FC = () => {
                             punches.map((punch, idx) => (
                               <tr key={`${date}_${idx}`} className="border-b border-slate-900/60 text-slate-300 print:border-gray-200">
                                 <td></td><td></td><td></td>
-                                <td className="p-2 text-slate-400 font-mono text-[15px]">{idx === 0 ? date : ''}</td>
-                                <td className="p-2 font-mono text-[15px] font-semibold">{punch.time}</td>
-                                <td className="p-2 font-mono text-[15px] font-bold text-rose-400 print:text-red-600">{punch.machine_id}</td>
-                                <td className="p-2 text-slate-300 text-[15px]">{punch.machine_location}</td>
+                                <td className="p-2 text-slate-400 font-mono text-base">{idx === 0 ? date : ''}</td>
+                                <td className="p-2 font-mono text-base font-semibold">{punch.time}</td>
+                                <td className="p-2 font-mono text-base font-bold text-rose-400 print:text-red-600">{punch.machine_id}</td>
+                                <td className="p-2 text-slate-300 text-base">{punch.machine_location}</td>
                               </tr>
                             ))
                           )}
@@ -650,7 +650,7 @@ export const MachineConfig: React.FC = () => {
                 <h4 className="text-sm font-bold text-white flex items-center gap-1.5">
                   <ShieldCheck className="w-4 h-4 text-slate-400" />
                   未設定班別人員打卡紀錄
-                  <span className="px-2 py-0.5 bg-slate-800 text-slate-400 font-bold rounded-lg text-[10px] ml-1">
+                  <span className="px-2 py-0.5 bg-slate-800 text-slate-400 font-bold rounded-lg text-xs ml-1">
                     {lastNoShiftData.length} 筆
                   </span>
                 </h4>
@@ -663,7 +663,7 @@ export const MachineConfig: React.FC = () => {
                 </button>
               </div>
 
-              <p className="text-[11px] text-slate-500 mb-4 no-print">
+              <p className="text-sm text-slate-500 mb-4 no-print">
                 以下人員未在員工主資料庫中設定適用班別，系統無法自動進行打卡機配對，僅列出供參考補建檔。
               </p>
 
@@ -690,7 +690,7 @@ export const MachineConfig: React.FC = () => {
                             <td className="p-3 font-mono font-bold text-slate-400">{emp.emp_id || <span className="text-slate-600 font-normal italic">無卡號</span>}</td>
                             <td className="p-3 font-bold text-slate-200 print:text-black">
                               {emp.name}
-                              <br /><span className="text-[10px] text-slate-600 font-mono">{emp.account_id || ''}</span>
+                              <br /><span className="text-xs text-slate-600 font-mono">{emp.account_id || ''}</span>
                             </td>
                             <td colSpan={4} className="p-3 text-slate-600 font-semibold">共 {total} 筆打卡紀錄</td>
                           </tr>
@@ -701,7 +701,7 @@ export const MachineConfig: React.FC = () => {
                                 <td className="p-2 text-slate-500 font-mono">{idx === 0 ? date : ''}</td>
                                 <td className="p-2 font-mono font-semibold">{p.time}</td>
                                 <td className="p-2 font-mono">{p.machine_id}</td>
-                                <td className="p-2 text-slate-500 text-[11px]">{p.machine_location}</td>
+                                <td className="p-2 text-slate-500 text-sm">{p.machine_location}</td>
                               </tr>
                             ))
                           )}
@@ -734,7 +734,7 @@ export const MachineConfig: React.FC = () => {
             {/* Form body */}
             <form onSubmit={handleSaveMachine} className="space-y-4 pt-4">
               <div>
-                <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">機號 <span className="text-red-400">*</span></label>
+                <label className="block text-sm font-bold text-slate-400 uppercase tracking-wider mb-1">機號 <span className="text-red-400">*</span></label>
                 <input
                   type="text"
                   required
@@ -747,7 +747,7 @@ export const MachineConfig: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">位置 (實體說明)</label>
+                <label className="block text-sm font-bold text-slate-400 uppercase tracking-wider mb-1">位置 (實體說明)</label>
                 <input
                   type="text"
                   value={formData.location}
@@ -758,7 +758,7 @@ export const MachineConfig: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">所屬班別 <span className="text-red-400">*</span></label>
+                <label className="block text-sm font-bold text-slate-400 uppercase tracking-wider mb-1">所屬班別 <span className="text-red-400">*</span></label>
                 <input
                   type="text"
                   required
@@ -767,7 +767,7 @@ export const MachineConfig: React.FC = () => {
                   placeholder="例如: 共用 或 地勤一班,地勤二班"
                   className="w-full bg-slate-950 border border-slate-850 rounded-xl p-2.5 text-xs text-white placeholder:text-slate-600 focus:outline-none focus:border-indigo-500/50"
                 />
-                <div className="text-[10px] text-slate-500 mt-1">多班別請用半形逗號分隔。填「共用」代表所有班別皆可使用。</div>
+                <div className="text-xs text-slate-500 mt-1">多班別請用半形逗號分隔。填「共用」代表所有班別皆可使用。</div>
               </div>
 
               {/* Action Buttons */}

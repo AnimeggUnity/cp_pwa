@@ -364,7 +364,7 @@ export const SalaryReports: React.FC = () => {
                     value={reportQuery}
                     onChange={(e) => setReportQuery(e.target.value)}
                     placeholder="搜尋姓名或編號..."
-                    className="w-full bg-slate-950/60 border border-slate-800 rounded-lg pl-8 pr-3 py-1.5 text-[11px] focus:outline-none focus:border-indigo-500/50 transition-colors"
+                    className="w-full bg-slate-950/60 border border-slate-800 rounded-lg pl-8 pr-3 py-1.5 text-sm focus:outline-none focus:border-indigo-500/50 transition-colors"
                   />
                 </div>
               )}
@@ -412,17 +412,17 @@ export const SalaryReports: React.FC = () => {
               <div className="space-y-6">
                 <div className="page-header text-center mb-6 py-2 border-b border-slate-900 hidden print:block">
                   <h2 className="text-xl font-bold text-black">夜點津貼彙整表</h2>
-                  <div className="text-[10px] text-gray-500 mt-1">夜點時間門檻: {threshold} 以後 | 生成時間: {new Date().toLocaleString()}</div>
+                  <div className="text-xs text-gray-500 mt-1">夜點時間門檻: {threshold} 以後 | 生成時間: {new Date().toLocaleString()}</div>
                 </div>
 
                 {/* Stats row */}
                 <div className="grid grid-cols-2 gap-4 no-print">
                   <div className="bg-slate-950/40 border border-slate-850 p-4 rounded-xl">
-                    <span className="text-[11px] text-slate-500 uppercase tracking-wider font-semibold">符合領取資格人數</span>
+                    <span className="text-sm text-slate-500 uppercase tracking-wider font-semibold">符合領取資格人數</span>
                     <div className="text-2xl font-bold text-white mt-1">{data.length} <span className="text-xs text-slate-500">人</span></div>
                   </div>
                   <div className="bg-slate-950/40 border border-slate-850 p-4 rounded-xl">
-                    <span className="text-[11px] text-slate-500 uppercase tracking-wider font-semibold">夜點津貼發放總人次</span>
+                    <span className="text-sm text-slate-500 uppercase tracking-wider font-semibold">夜點津貼發放總人次</span>
                     <div className="text-2xl font-bold text-emerald-400 mt-1">{totalAllowance} <span className="text-xs text-slate-500">次</span></div>
                   </div>
                 </div>
@@ -437,7 +437,7 @@ export const SalaryReports: React.FC = () => {
                     <button
                       onClick={() => setNightShiftFilter('all')}
                       className={cn(
-                        "px-2.5 py-1 text-[11px] rounded-lg transition-colors font-semibold",
+                        "px-2.5 py-1 text-sm rounded-lg transition-colors font-semibold",
                         nightShiftFilter === 'all' ? "bg-indigo-600 text-white" : "hover:bg-slate-850 text-slate-400"
                       )}
                     >
@@ -450,7 +450,7 @@ export const SalaryReports: React.FC = () => {
                           key={shift}
                           onClick={() => setNightShiftFilter(shift)}
                           className={cn(
-                            "px-2.5 py-1 text-[11px] rounded-lg transition-colors font-semibold",
+                            "px-2.5 py-1 text-sm rounded-lg transition-colors font-semibold",
                             nightShiftFilter === shift ? "bg-indigo-600 text-white" : "hover:bg-slate-850 text-slate-400"
                           )}
                         >
@@ -465,7 +465,7 @@ export const SalaryReports: React.FC = () => {
                 <div className="overflow-x-auto border border-slate-850 bg-slate-950/20 rounded-xl">
                   <table className="w-full text-left border-collapse text-sm" id="rendered-report-table">
                     <thead>
-                      <tr className="bg-slate-900 border-b border-slate-800 text-slate-300 font-bold text-center text-sm md:text-[15px]">
+                      <tr className="bg-slate-900 border-b border-slate-800 text-slate-300 font-bold text-center text-sm md:text-base">
                         <th className="p-3 text-left min-w-[6rem] whitespace-nowrap">員工卡號</th>
                         <th className="p-3 text-left min-w-[6rem] whitespace-nowrap">姓名</th>
                         <th className="p-3 text-left min-w-[6rem] whitespace-nowrap">班別</th>
@@ -488,18 +488,18 @@ export const SalaryReports: React.FC = () => {
                               idx % 2 === 1 ? "bg-slate-900/40" : "bg-transparent"
                             )}
                           >
-                            <td className="p-3 font-mono text-[15px] font-bold text-white/90 whitespace-nowrap">{row.emp_id}</td>
-                            <td className="p-3 font-semibold text-[15px] text-white whitespace-nowrap">{row.name}</td>
-                            <td className="p-3 text-[15px] text-slate-300 whitespace-nowrap">{row.shift_class}</td>
-                            <td className="p-3 text-[15px] whitespace-nowrap">
+                            <td className="p-3 font-mono text-base font-bold text-white/90 whitespace-nowrap">{row.emp_id}</td>
+                            <td className="p-3 font-semibold text-base text-white whitespace-nowrap">{row.name}</td>
+                            <td className="p-3 text-base text-slate-300 whitespace-nowrap">{row.shift_class}</td>
+                            <td className="p-3 text-base whitespace-nowrap">
                               {row.is_driver ? (
                                 <span className="px-1.5 py-0.5 bg-amber-500/10 border border-amber-500/20 text-amber-400 font-bold rounded-lg text-xs">司機</span>
                               ) : (
                                 <span className="text-slate-500">一般員工</span>
                               )}
                             </td>
-                            <td className="p-3 text-center font-bold text-[15px] text-emerald-400 whitespace-nowrap">{row.count} 次</td>
-                            <td className="p-3 break-all font-mono text-[15px] text-slate-300">{row.dates.sort().join(', ')}</td>
+                            <td className="p-3 text-center font-bold text-base text-emerald-400 whitespace-nowrap">{row.count} 次</td>
+                            <td className="p-3 break-all font-mono text-base text-slate-300">{row.dates.sort().join(', ')}</td>
                           </tr>
                         ))
                       )}
@@ -564,7 +564,7 @@ export const SalaryReports: React.FC = () => {
 
                 <div className="page-header text-center mb-6 py-2 border-b border-slate-900 hidden print:block">
                   <h2 className="text-xl font-bold text-black">單日打卡查詢報表</h2>
-                  <div className="text-[10px] text-gray-500 mt-1">查詢日期: {activeDate} | 該日總打卡人次: {data.length} 人</div>
+                  <div className="text-xs text-gray-500 mt-1">查詢日期: {activeDate} | 該日總打卡人次: {data.length} 人</div>
                 </div>
 
                 {isPrintLayout ? (
@@ -595,7 +595,7 @@ export const SalaryReports: React.FC = () => {
                               >
                                 <td className="p-2">
                                   <div className="font-bold text-white text-xs print:text-black">{emp.name}</div>
-                                  <div className="text-[10px] text-slate-400 font-mono print:text-gray-600">{emp.emp_id} {emp.is_driver ? '[司機]' : ''}</div>
+                                  <div className="text-xs text-slate-400 font-mono print:text-gray-600">{emp.emp_id} {emp.is_driver ? '[司機]' : ''}</div>
                                 </td>
                                 <td className="p-2 text-center font-bold text-xs">{emp.punch_times.length}</td>
                                 <td className="p-2">
@@ -631,7 +631,7 @@ export const SalaryReports: React.FC = () => {
                   <div className="overflow-x-auto border border-slate-850 bg-slate-950/20 rounded-xl">
                     <table className="w-full text-left border-collapse text-sm" id="rendered-report-table">
                       <thead>
-                        <tr className="bg-slate-900 border-b border-slate-800 text-slate-300 font-bold text-center text-sm md:text-[15px]">
+                        <tr className="bg-slate-900 border-b border-slate-800 text-slate-300 font-bold text-center text-sm md:text-base">
                           <th className="p-3 text-left w-28">班別</th>
                           <th className="p-3 text-left">員工卡號</th>
                           <th className="p-3 text-left w-28">姓名</th>
@@ -654,17 +654,17 @@ export const SalaryReports: React.FC = () => {
                                 idx % 2 === 1 ? "bg-slate-900/40" : "bg-transparent"
                               )}
                             >
-                              <td className="p-3 font-semibold text-[15px] text-white truncate max-w-[7rem]">{row.shift_class}</td>
-                              <td className="p-3 font-mono text-[15px] text-white/90">{row.emp_id}</td>
-                              <td className="p-3 font-semibold text-[15px] text-white truncate max-w-[7rem]">{row.name}</td>
-                              <td className="p-3 text-[15px]">
+                              <td className="p-3 font-semibold text-base text-white truncate max-w-[7rem]">{row.shift_class}</td>
+                              <td className="p-3 font-mono text-base text-white/90">{row.emp_id}</td>
+                              <td className="p-3 font-semibold text-base text-white truncate max-w-[7rem]">{row.name}</td>
+                              <td className="p-3 text-base">
                                 {row.is_driver ? (
                                   <span className="px-1.5 py-0.5 bg-amber-500/10 border border-amber-500/20 text-amber-400 font-bold rounded-lg text-xs">司機</span>
                                 ) : (
                                   <span className="text-slate-500">一般</span>
                                 )}
                               </td>
-                              <td className="p-3 text-center font-bold text-[15px]">{row.punch_times.length} 次</td>
+                              <td className="p-3 text-center font-bold text-base">{row.punch_times.length} 次</td>
                               <td className="p-3">
                                 <div className="flex flex-wrap gap-1.5">
                                   {row.punch_times.map((t, idx) => {
@@ -706,7 +706,7 @@ export const SalaryReports: React.FC = () => {
               <div className="space-y-6">
                 <div className="page-header text-center mb-6 py-2 border-b border-slate-900 hidden print:block">
                   <h2 className="text-xl font-bold text-black">考勤月打卡紀錄完整查詢</h2>
-                  <div className="text-[10px] text-gray-500 mt-1">考勤天數共計 {dates.length} 天</div>
+                  <div className="text-xs text-gray-500 mt-1">考勤天數共計 {dates.length} 天</div>
                 </div>
 
                 <div className="p-4 bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs rounded-xl no-print">
@@ -726,7 +726,7 @@ export const SalaryReports: React.FC = () => {
                           [{emp.emp_id}] {emp.name} ({emp.shift_class || '未設定班別'})
                         </span>
                         {emp.is_driver && (
-                          <span className="px-2 py-0.5 bg-amber-500/10 border border-amber-500/20 text-amber-400 text-[10px] font-bold rounded-lg print:border-gray-400 print:text-black">
+                          <span className="px-2 py-0.5 bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-bold rounded-lg print:border-gray-400 print:text-black">
                             司機
                           </span>
                         )}
@@ -735,7 +735,7 @@ export const SalaryReports: React.FC = () => {
                       <div className="overflow-x-auto border border-slate-850 rounded-xl bg-slate-950/20 print:border-gray-300">
                         <table className="w-full text-left border-collapse text-sm print:text-black">
                           <thead>
-                            <tr className="bg-slate-900 border-b border-slate-800 text-slate-350 font-bold text-center text-sm md:text-[15px] print:bg-gray-150 print:text-black">
+                            <tr className="bg-slate-900 border-b border-slate-800 text-slate-350 font-bold text-center text-sm md:text-base print:bg-gray-150 print:text-black">
                               <th className="p-2 w-[20%]">日期</th>
                               <th className="p-2 w-[10%]">星期</th>
                               <th className="p-2 w-[20%]">打卡狀態</th>
@@ -761,16 +761,16 @@ export const SalaryReports: React.FC = () => {
                                           : "bg-transparent text-slate-350")
                                   )}
                                 >
-                                  <td className="p-2 font-mono text-[15px] font-bold text-white/90">{day.date}</td>
-                                  <td className="p-2 font-bold text-[15px] text-white">{day.weekday}</td>
-                                  <td className="p-2 font-extrabold text-[15px]">
+                                  <td className="p-2 font-mono text-base font-bold text-white/90">{day.date}</td>
+                                  <td className="p-2 font-bold text-base text-white">{day.weekday}</td>
+                                  <td className="p-2 font-extrabold text-base">
                                     {count > 0 ? (
                                       <span className="text-emerald-400 print:text-green-700">刷卡正常</span>
                                     ) : (
                                       <span className="text-rose-500/80 font-bold print:text-gray-400">未刷卡/缺勤</span>
                                     )}
                                   </td>
-                                  <td className="p-2 font-extrabold text-[15px] text-white">{count > 0 ? `${count} 次` : '-'}</td>
+                                  <td className="p-2 font-extrabold text-base text-white">{count > 0 ? `${count} 次` : '-'}</td>
                                   <td className="p-2 text-left">
                                     <div className="flex flex-wrap gap-1">
                                       {punchRecord && punchRecord.punch_times.map((t, idx) => {

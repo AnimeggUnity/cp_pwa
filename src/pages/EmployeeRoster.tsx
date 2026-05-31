@@ -329,7 +329,7 @@ export const EmployeeRoster: React.FC = () => {
             <button
               onClick={() => { setShiftFilter('all'); setCurrentPage(1); }}
               className={cn(
-                "px-2.5 py-1 text-[11px] rounded-lg transition-colors font-semibold",
+                "px-2.5 py-1 text-sm rounded-lg transition-colors font-semibold",
                 shiftFilter === 'all' ? "bg-indigo-600 text-white" : "hover:bg-slate-850 text-slate-400"
               )}
             >
@@ -342,7 +342,7 @@ export const EmployeeRoster: React.FC = () => {
                   key={shift}
                   onClick={() => { setShiftFilter(shift); setCurrentPage(1); }}
                   className={cn(
-                    "px-2.5 py-1 text-[11px] rounded-lg transition-colors font-semibold",
+                    "px-2.5 py-1 text-sm rounded-lg transition-colors font-semibold",
                     shiftFilter === shift ? "bg-indigo-600 text-white" : "hover:bg-slate-850 text-slate-400"
                   )}
                 >
@@ -357,7 +357,7 @@ export const EmployeeRoster: React.FC = () => {
         <div className="overflow-x-auto border border-slate-850 bg-slate-950/20 rounded-xl">
           <table className="w-full text-left border-collapse text-sm">
             <thead>
-              <tr className="bg-slate-900/80 border-b border-slate-800 text-slate-300 font-bold text-center text-sm md:text-[15px]">
+              <tr className="bg-slate-900/80 border-b border-slate-800 text-slate-300 font-bold text-center text-sm md:text-base">
                 <th className="p-3 text-left">卡號/工號</th>
                 <th className="p-3 text-left">姓名</th>
                 <th className="p-3 text-left">公務帳號</th>
@@ -380,11 +380,11 @@ export const EmployeeRoster: React.FC = () => {
                       idx % 2 === 1 ? "bg-slate-900/40" : "bg-transparent"
                     )}
                   >
-                    <td className="p-3 font-mono text-[15px] font-bold text-white/90">{emp.emp_id}</td>
-                    <td className="p-3 font-semibold text-[15px] text-white">{emp.name}</td>
-                    <td className="p-3 font-mono text-[15px]">{emp.account_id || '-'}</td>
-                    <td className="p-3 text-[15px]">{emp.shift_class || '-'}</td>
-                    <td className="p-3 text-center text-[15px]">
+                    <td className="p-3 font-mono text-base font-bold text-white/90">{emp.emp_id}</td>
+                    <td className="p-3 font-semibold text-base text-white">{emp.name}</td>
+                    <td className="p-3 font-mono text-base">{emp.account_id || '-'}</td>
+                    <td className="p-3 text-base">{emp.shift_class || '-'}</td>
+                    <td className="p-3 text-center text-base">
                       {emp.is_driver ? (
                         <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-amber-500/10 border border-amber-500/20 text-amber-400 font-bold rounded-lg text-xs">
                           司機
@@ -482,7 +482,7 @@ export const EmployeeRoster: React.FC = () => {
             {/* Form body */}
             <form onSubmit={handleSaveEmployee} className="space-y-4 pt-4">
               <div>
-                <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">姓名 <span className="text-red-400">*</span></label>
+                <label className="block text-sm font-bold text-slate-400 uppercase tracking-wider mb-1">姓名 <span className="text-red-400">*</span></label>
                 <input
                   type="text"
                   required
@@ -494,7 +494,7 @@ export const EmployeeRoster: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">員工卡號 <span className="text-red-400">*</span></label>
+                <label className="block text-sm font-bold text-slate-400 uppercase tracking-wider mb-1">員工卡號 <span className="text-red-400">*</span></label>
                 <input
                   type="text"
                   required
@@ -507,7 +507,7 @@ export const EmployeeRoster: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">公務帳號 (選填)</label>
+                <label className="block text-sm font-bold text-slate-400 uppercase tracking-wider mb-1">公務帳號 (選填)</label>
                 <input
                   type="text"
                   value={formData.account_id}
@@ -518,7 +518,7 @@ export const EmployeeRoster: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">所屬班別</label>
+                <label className="block text-sm font-bold text-slate-400 uppercase tracking-wider mb-1">所屬班別</label>
                 <input
                   type="text"
                   value={formData.shift_class}
@@ -529,7 +529,7 @@ export const EmployeeRoster: React.FC = () => {
               </div>
 
               <div className="flex items-center justify-between p-2 bg-slate-950/60 rounded-xl border border-slate-850/80">
-                <span className="text-[11px] font-bold text-slate-300">標記為司機</span>
+                <span className="text-sm font-bold text-slate-300">標記為司機</span>
                 <input
                   type="checkbox"
                   checked={formData.is_driver}

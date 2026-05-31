@@ -468,7 +468,7 @@ export const LeaveDeduction: React.FC = () => {
           <h3 className="font-semibold text-white text-sm mb-1">
             {fileName ? fileName : '拖放或點選上傳請假資料'}
           </h3>
-          <p className="text-[11px] text-slate-500">
+          <p className="text-sm text-slate-500">
             {fileName && fileSize ? `檔案大小: ${fileSize} KB` : '請上傳 請假資料.xlsx'}
           </p>
         </div>
@@ -524,7 +524,7 @@ export const LeaveDeduction: React.FC = () => {
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       placeholder="搜尋姓名、編號或班別..."
-                      className="w-full bg-slate-950/60 border border-slate-800 rounded-lg pl-8 pr-3 py-1.5 text-[11px] focus:outline-none focus:border-indigo-500/50 transition-colors"
+                      className="w-full bg-slate-950/60 border border-slate-800 rounded-lg pl-8 pr-3 py-1.5 text-sm focus:outline-none focus:border-indigo-500/50 transition-colors"
                     />
                   </div>
                   <button 
@@ -555,25 +555,25 @@ export const LeaveDeduction: React.FC = () => {
 
               <div className="page-header text-center mb-6 py-2 border-b border-slate-900 hidden print:block">
                 <h2 className="text-xl font-bold text-black">員工請假扣款統計報表</h2>
-                <div className="text-[10px] text-gray-500 mt-1">生成時間: {new Date().toLocaleString()}</div>
+                <div className="text-xs text-gray-500 mt-1">生成時間: {new Date().toLocaleString()}</div>
               </div>
 
               {/* Stats badges */}
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6 no-print">
                 <div className="bg-slate-950/40 border border-slate-850 p-4 rounded-xl">
-                  <span className="text-[11px] text-slate-500 uppercase tracking-wider font-semibold">請假員工數</span>
+                  <span className="text-sm text-slate-500 uppercase tracking-wider font-semibold">請假員工數</span>
                   <div className="text-xl font-bold text-white mt-1">{list.length} 人</div>
                 </div>
                 <div className="bg-slate-950/40 border border-slate-850 p-4 rounded-xl">
-                  <span className="text-[11px] text-slate-500 uppercase tracking-wider font-semibold text-rose-400">傷病總扣款</span>
+                  <span className="text-sm text-slate-500 uppercase tracking-wider font-semibold text-rose-400">傷病總扣款</span>
                   <div className="text-xl font-bold text-rose-400 mt-1">${totalSickDeduction.toLocaleString()}</div>
                 </div>
                 <div className="bg-slate-950/40 border border-slate-850 p-4 rounded-xl">
-                  <span className="text-[11px] text-slate-500 uppercase tracking-wider font-semibold text-amber-400">事假總扣款</span>
+                  <span className="text-sm text-slate-500 uppercase tracking-wider font-semibold text-amber-400">事假總扣款</span>
                   <div className="text-xl font-bold text-amber-400 mt-1">${totalPersonalDeduction.toLocaleString()}</div>
                 </div>
                 <div className="bg-slate-950/40 border border-emerald-500/20 bg-emerald-500/[0.02] p-4 rounded-xl">
-                  <span className="text-[11px] text-slate-500 uppercase tracking-wider font-semibold text-emerald-400">總扣款金額</span>
+                  <span className="text-sm text-slate-500 uppercase tracking-wider font-semibold text-emerald-400">總扣款金額</span>
                   <div className="text-xl font-bold text-emerald-400 mt-1">${totalDeduction.toLocaleString()}</div>
                 </div>
               </div>
@@ -610,7 +610,7 @@ export const LeaveDeduction: React.FC = () => {
                               {emp.emp_id}
                             </td>
                             <td className="p-3 font-semibold text-white">
-                              {emp.is_driver && <span className="px-1 py-0.5 bg-amber-500/10 border border-amber-500/20 text-amber-400 text-[9px] font-bold rounded-lg me-1">司機</span>}
+                              {emp.is_driver && <span className="px-1 py-0.5 bg-amber-500/10 border border-amber-500/20 text-amber-400 text-[11px] font-bold rounded-lg me-1">司機</span>}
                               {emp.name}
                             </td>
                             <td className="p-3">{emp.shift_class}</td>
@@ -633,7 +633,7 @@ export const LeaveDeduction: React.FC = () => {
                                     {emp.name} ({emp.emp_id}) 的請假明細與扣款運算
                                   </h5>
 
-                                  <table className="w-full text-left border-collapse text-[11px] border border-slate-850 rounded-lg overflow-hidden">
+                                  <table className="w-full text-left border-collapse text-sm border border-slate-850 rounded-lg overflow-hidden">
                                     <thead>
                                       <tr className="bg-slate-900 border-b border-slate-800 text-slate-400 font-bold">
                                         <th className="p-2">請假日期</th>
@@ -649,7 +649,7 @@ export const LeaveDeduction: React.FC = () => {
                                           <td className="p-2 font-mono">{d.date}</td>
                                           <td className="p-2">
                                             <span className={cn(
-                                              "px-1.5 py-0.5 rounded text-[10px] font-bold",
+                                              "px-1.5 py-0.5 rounded text-xs font-bold",
                                               d.leave_type === '事假' && "bg-amber-500/10 border border-amber-500/20 text-amber-400",
                                               d.leave_type === '傷病' && "bg-rose-500/10 border border-rose-500/20 text-rose-400",
                                               d.leave_type !== '事假' && d.leave_type !== '傷病' && "bg-slate-800 border border-slate-700 text-slate-400"
@@ -681,7 +681,7 @@ export const LeaveDeduction: React.FC = () => {
                   <span className="w-1.5 h-1.5 bg-indigo-500 rounded-full"></span>
                   扣款規則說明：
                 </h5>
-                <ul className="text-[11px] text-slate-400 space-y-1.5 pl-4 list-disc">
+                <ul className="text-sm text-slate-400 space-y-1.5 pl-4 list-disc">
                   <li>事假：1 天 = $333，半天 = $167，不足半天以半天計（無條件進位到以 0.5 天為單位）。</li>
                   <li>傷病：1 天 = $167，半天 = $84，不足半天以半天計（無條件進位到以 0.5 天為單位；生理假比照傷病假）。</li>
                   <li>其他假別（如特休、婚假、喪假、補休等）不予扣款。</li>
