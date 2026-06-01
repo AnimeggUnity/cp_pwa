@@ -17,6 +17,9 @@ export default defineConfig({
   define: {
     __BUILD_TIME__: JSON.stringify(buildTime()),
   },
+  esbuild: {
+    legalComments: 'none',
+  },
   ...(isLocal && {
     build: {
       outDir: 'dist-local',
