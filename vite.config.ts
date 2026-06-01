@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
+import { viteSingleFile } from 'vite-plugin-singlefile'
 
 // https://vite.dev/config/
 function buildTime(): string {
@@ -9,13 +10,21 @@ function buildTime(): string {
   return `${now.getFullYear()}${p(now.getMonth() + 1)}${p(now.getDate())}${p(now.getHours())}${p(now.getMinutes())}`;
 }
 
+const isLocal = process.env.BUILD_TARGET === 'local';
+
 export default defineConfig({
-  base: '/cp_pwa/',
+  base: isLocal ? './' : '/cp_pwa/',
   define: {
     __BUILD_TIME__: JSON.stringify(buildTime()),
   },
+  ...(isLocal && {
+    build: {
+      outDir: 'dist-local',
+    }
+  }),
   plugins: [
     react(),
+    ...(isLocal ? [viteSingleFile()] : []),
     VitePWA({
       disable: true, // 暫時停用離線快取，待移轉完成後再開啟
       registerType: 'prompt',
